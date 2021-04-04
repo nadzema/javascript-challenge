@@ -1,21 +1,41 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
+// YOUR CODE HERE
+//select the tbody to append table data 
+var tbody = d3.select('tbody');
 
-console.log(data)
+//Define selection for date for filtered data
 
-function showTable(item){
-    var tbody = d3.select('tbody');
-    item.forEach((UFOinfo)=> {
-        var row = tbody.append('tr');
-        Object.entries(UFOinfo).forEach(([key,value])=> {
-        var single = row.append('td');
-        single.html(value);
+var date = d3.select('#datetime');
+
+//Function that builds the table up 
+
+function buildTable(input) {
+    
+    tbody.html("");
+    input.forEach((Row) => {
+        console.table(Row);
+        var row = tbody.append("tr");
+
+        console.table(Object.values(Row));
+        Object.values(Row).forEach((citydata) => {
+
+            var output = row.append('td');
+            output.text(citydata);
+
+
         });
-
     });
-
 };
 
-console.log(showTable)
+// Define function and call it to tableData
+function handleClick(){
+    var date = d3.select('#datetime').property("value");
+
+
+
+}
+
+
+buildTable(tableData)
