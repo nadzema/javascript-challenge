@@ -31,11 +31,14 @@ function buildTable(input) {
 
 // Define function and call it to tableData
 function handleClick(){
+    
     var date = d3.select('#datetime').property("value");
 
-
-
+    if (date) {
+        tableData = tableData.filter((row) => row.datetime === date);   
+    } 
+    buildTable(tableData);
 }
 
-
-buildTable(tableData)
+d3.selectAll("#filter-btn").on("click", handleClick);
+buildTable(tableData);
